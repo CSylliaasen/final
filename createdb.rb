@@ -5,31 +5,64 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
-DB.create_table! :events do
-  primary_key :id
-  String :title
-  String :description, text: true
-  String :date
+DB.create_table! :hikes do
+  primary_key :hike_id
+  String :hike_name
   String :location
-end
-DB.create_table! :rsvps do
-  primary_key :id
-  foreign_key :event_id
-  Boolean :going
-  String :name
-  String :email
+  String :distance
+  String :difficulty
   String :comments, text: true
+end
+DB.create_table! :logs do
+  primary_key :log_id
+  foreign_key :user_id
+  foreign_key :hike_id
+  String :date
+  String :duration
+  String :distance
+  String :notes, text: true
+end
+DB.create_table! :users do
+  primary_key :user_id
+  String :first_name
+  String :last_name
+  String :email
+  String :phone_number
+  String :creation_date
+  String :password
 end
 
 # Insert initial (seed) data
-events_table = DB.from(:events)
+hikes_table = DB.from(:hikes)
+logs_table = DB.from(:logs)
+users_table = DB.from(:users)
 
-events_table.insert(title: "Bacon Burger Taco Fest", 
-                    description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
-                    date: "June 21",
-                    location: "Kellogg Global Hub")
+hikes_table.insert( hike_name: "Kettle Moraine", 
+                    location: "Kettle Moraine, WI",
+                    distance: "10 miles",
+                    difficulty: "Easy",
+                    comments: "Beautiful scenic hike with lots of lakes and trees!")
 
-events_table.insert(title: "Kaleapolooza", 
-                    description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
-                    date: "July 4",
-                    location: "Nowhere")
+hikes_table.insert( hike_name: "Pictured Rocks", 
+                    location: "Munising, MI",
+                    distance: "15 miles",
+                    difficulty: "Hard",
+                    comments: "Wonderful walk along the lake. Not a loop so be sure to have a return strategy.")
+
+hikes_table.insert( hike_name: "Starved Rock", 
+                    location: "Oglesby, IL",
+                    distance: "5 miles",
+                    difficulty: "Moderate",
+                    comments: "Great day trip for Chigago-nians!")
+
+hikes_table.insert( hike_name: "Isle Royale", 
+                    location: "Lake Superior",
+                    distance: "20 miles",
+                    difficulty: "Hard",
+                    comments: "Incredible trip but is difficult to get to. Must take a sea-place or a very long boat ride from Michigan or Minnesota.")
+
+hikes_table.insert( hike_name: "Mark Twain National Forest", 
+                    location: "Kaolin Township, MO",
+                    distance: "10 miles",
+                    difficulty: "Easy",
+                    comments: "Beautiful park. But be careful, gets very buggy in the summer months")

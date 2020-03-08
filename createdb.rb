@@ -32,7 +32,6 @@ DB.create_table! :users do
   String :password
 end
 
-# Insert initial (seed) data
 hikes_table = DB.from(:hikes)
 logs_table = DB.from(:logs)
 users_table = DB.from(:users)
@@ -66,4 +65,3 @@ hikes_table.insert( hike_name: "Mark Twain National Forest",
                     distance: "10 miles",
                     difficulty: "Easy",
                     comments: "Beautiful park. But be careful, gets very buggy in the summer months!")
-# Just commit already!!!

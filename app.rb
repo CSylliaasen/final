@@ -14,5 +14,52 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-events_table = DB.from(:events)
-rsvps_table = DB.from(:rsvps)
+hikes_table = DB.from(:hikes)
+logs_table = DB.from(:logs)
+users_table = DB.from(:users)
+
+before do
+    @current_user = users_table.where(user_id: session["user_id"]).to_a[0]
+end
+
+get "/" do
+end
+
+get "/logins/new" do
+end
+
+post "/logins/create" do
+end
+
+get "/users/new" do
+end
+
+get "/users/create" do
+end
+
+get "/users/:user_id" do
+end
+
+get "/users/:user_id/logs/new" do
+end
+
+get "/users/:user_id/logs/create" do
+end
+
+get "/trails" do
+end
+
+get "/trails/new" do
+end
+
+get "/users/create" do
+end
+
+get "/trails/leaderboard" do
+end
+
+get "/sign_off" do
+    session["user_id"] = nil
+    @current_user = nil
+    view "sign_off"
+end

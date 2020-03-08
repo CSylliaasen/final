@@ -23,6 +23,7 @@ before do
 end
 
 get "/" do
+    view "landing"
 end
 
 get "/logins/new" do

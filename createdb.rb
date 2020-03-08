@@ -66,3 +66,4 @@ hikes_table.insert( hike_name: "Mark Twain National Forest",
                     distance: "10 miles",
                     difficulty: "Easy",
                     comments: "Beautiful park. But be careful, gets very buggy in the summer months!")
+# Just commit already!!!

@@ -1,7 +1,7 @@
 <h1>New log</h1>
-<form>
+<form action="/users/logs/create">
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Select a trail</label>
+        <label for="trail_name">Select a trail</label>
         <select class="form-control" id="trail_name">
         <% pp @trails_table %>
         <% for trail in @trails_table.all do %>
@@ -10,21 +10,12 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="exampleFormControlInput1">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <label for="distance">Distance</label>
+        <input type="float" class="form-control" id="distance" placeholder="1.25">
     </div>
-<div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
+    <div class="form-group">
+        <label for="notes">Notes</label>
+        <textarea class="form-control" id="notes" rows="3" placeholder="“I ran into a Sasquatch – a Bigfoot. We were face to face. He was 30 feet up a the tree."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>

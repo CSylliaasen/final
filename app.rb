@@ -18,8 +18,6 @@ hikes_table = DB.from(:hikes)
 logs_table = DB.from(:logs)
 users_table = DB.from(:users)
 
-# Test comit
-
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]
 end
@@ -29,15 +27,29 @@ get "/" do
 end
 
 get "/logins/new" do
+    view "new_login"
 end
 
 post "/logins/create" do
+    user = users_table.where(email: params["email"]).to_a[0]
+    if user && BCrypt::Password::new(user[:password]) == params["password"]
+        session["user_id"] = user[:id]
+        @current_user = user
+        view "create_login"
+    else
+        view "create_login_failed"
+    end
 end
 
 get "/users/new" do
+    view "new_user"
 end
 
-get "/users/create" do
+post "/users/create" do
+    hashed_password = BCrypt::Password.create(params["password"])
+    todays_date = DateTime.now
+    users_table.insert(first_name: params["first_name"], last_name: params["last_name"], email: params["email"], phone_number: params["phone_number"], creation_date: todays_date, password: hashed_password)
+    view "create_user"
 end
 
 get "/users/:user_id" do

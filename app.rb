@@ -20,6 +20,7 @@ users_table = DB.from(:users)
 
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]
+    pp @current_user
 end
 
 get "/" do
@@ -52,7 +53,8 @@ post "/users/create" do
     view "create_user"
 end
 
-get "/users/:user_id" do
+get "/users/user_detail" do
+    view "user_detail"
 end
 
 get "/users/:user_id/logs/new" do

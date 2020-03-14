@@ -16,7 +16,7 @@ end
 DB.create_table! :logs do
   primary_key :log_id
   foreign_key :user_id
-  foreign_key :hike_id
+  foreign_key :trail_id
   String :date
   String :duration
   String :distance

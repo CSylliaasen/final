@@ -53,6 +53,7 @@ post "/users/create" do
 end
 
 get "/users/user_detail" do
+    
     view "user_detail"
 end
 
@@ -61,7 +62,11 @@ get "/users/logs/new" do
     view "new_log"
 end
 
-get "/users/logs/create" do
+post "/users/logs/create" do
+    trail = trails_table.where(trail_name: params["trail_name"]).to_a[0]
+    trail_id = trail[:trail_id]
+    todays_date = DateTime.now
+    logs_table.insert(user_id: session["user_id"], trail_id: trail_id, date: todays_date, duration: params["duration"], distance: params["distance"], notes: params["notes"])
     view "create_log"
 end
 

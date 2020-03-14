@@ -1,8 +1,8 @@
 <h1>New log</h1>
-<form action="/users/logs/create">
+<form action="/users/logs/create" method="post">
     <div class="form-group">
         <label for="trail_name">Select a trail</label>
-        <select class="form-control" id="trail_name">
+        <select class="form-control" name="trail_name">
         <% pp @trails_table %>
         <% for trail in @trails_table.all do %>
             <option><%= trail[:trail_name] %></option>
@@ -11,11 +11,15 @@
     </div>
     <div class="form-group">
         <label for="distance">Distance</label>
-        <input type="float" class="form-control" id="distance" placeholder="1.25">
+        <input type="text" class="form-control" name="distance" placeholder="1.25 miles">
+    </div>
+    <div class="form-group">
+        <label for="distance">Duration</label>
+        <input type="text" class="form-control" name="duration" placeholder="30 minutes">
     </div>
     <div class="form-group">
         <label for="notes">Notes</label>
-        <textarea class="form-control" id="notes" rows="3" placeholder="“I ran into a Sasquatch – a Bigfoot. We were face to face. He was 30 feet up a the tree."></textarea>
+        <textarea class="form-control" name="notes" rows="3" placeholder="“I ran into a Sasquatch – a Bigfoot. We were face to face. He was 30 feet up a the tree."></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

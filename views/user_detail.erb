@@ -20,4 +20,29 @@
     <div class="row">
         <a href = "/users/logs/new" type="button" class="btn btn-primary">New log entry</a>
     </div>
+    <div class="row">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Trail</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Distance</th>
+                <th scope="col">Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% for entry in @log_summary_table do %>
+                <tr>
+                <th scope="row">1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
 </div>
+
+

@@ -14,13 +14,12 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-hikes_table = DB.from(:hikes)
+trails_table = DB.from(:trails)
 logs_table = DB.from(:logs)
 users_table = DB.from(:users)
 
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]
-    pp @current_user
 end
 
 get "/" do
@@ -57,22 +56,29 @@ get "/users/user_detail" do
     view "user_detail"
 end
 
-get "/users/:user_id/logs/new" do
+get "/users/logs/new" do
+    @trails_table = trails_table
+    view "new_log"
 end
 
-get "/users/:user_id/logs/create" do
+get "/users/logs/create" do
+    view "create_log"
 end
 
 get "/trails" do
+    view "trails"
 end
 
 get "/trails/new" do
+    view "new_trail"
 end
 
-get "/users/create" do
+get "/trails/create" do
+    view "create_trail"
 end
 
 get "/trails/leaderboard" do
+    view "leaderboard"
 end
 
 get "/sign_off" do

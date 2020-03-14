@@ -5,9 +5,9 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
-DB.create_table! :hikes do
-  primary_key :hike_id
-  String :hike_name
+DB.create_table! :trails do
+  primary_key :trail_id
+  String :trail_name
   String :location
   String :distance
   String :difficulty
@@ -32,35 +32,35 @@ DB.create_table! :users do
   String :password
 end
 
-hikes_table = DB.from(:hikes)
+trails_table = DB.from(:trails)
 logs_table = DB.from(:logs)
 users_table = DB.from(:users)
 
-hikes_table.insert( hike_name: "Kettle Moraine", 
+trails_table.insert( trail_name: "Kettle Moraine", 
                     location: "Kettle Moraine, WI",
                     distance: "10 miles",
                     difficulty: "Easy",
                     comments: "Beautiful scenic hike with lots of lakes and trees!")
 
-hikes_table.insert( hike_name: "Pictured Rocks", 
+trails_table.insert( trail_name: "Pictured Rocks", 
                     location: "Munising, MI",
                     distance: "15 miles",
                     difficulty: "Hard",
                     comments: "Wonderful walk along the lake. Not a loop so be sure to have a return strategy.")
 
-hikes_table.insert( hike_name: "Starved Rock", 
+trails_table.insert( trail_name: "Starved Rock", 
                     location: "Oglesby, IL",
                     distance: "5 miles",
                     difficulty: "Moderate",
                     comments: "Great day trip for Chigago-nians!")
 
-hikes_table.insert( hike_name: "Isle Royale", 
+trails_table.insert( trail_name: "Isle Royale", 
                     location: "Lake Superior",
                     distance: "20 miles",
                     difficulty: "Hard",
                     comments: "Incredible trip but is difficult to get to. Must take a sea-place or a very long boat ride from Michigan or Minnesota.")
 
-hikes_table.insert( hike_name: "Mark Twain National Forest", 
+trails_table.insert( trail_name: "Mark Twain National Forest", 
                     location: "Kaolin Township, MO",
                     distance: "10 miles",
                     difficulty: "Easy",

@@ -33,7 +33,7 @@ end
 post "/logins/create" do
     user = users_table.where(email: params["email"]).to_a[0]
     if user && BCrypt::Password::new(user[:password]) == params["password"]
-        session["user_id"] = user[:id]
+        session["user_id"] = user[:user_id]
         @current_user = user
         view "create_login"
     else

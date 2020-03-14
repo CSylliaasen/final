@@ -18,6 +18,8 @@ hikes_table = DB.from(:hikes)
 logs_table = DB.from(:logs)
 users_table = DB.from(:users)
 
+# Test comit
+
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]
 end

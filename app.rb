@@ -120,3 +120,25 @@ get "/sign_off" do
     @current_user = nil
     view "sign_off"
 end
+
+get "/password_reset/new" do
+    view "password_reset_new"
+end
+
+post "/password_reset/create" do
+    user = users_table.where(email: params["email"]).to_a[0]
+    if user != nil
+        o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+        new_password = (0...12).map { o[rand(o.length)] }.join
+
+        client.messages.create(
+        from: "+18183815131", 
+        to: user[:phone_number],
+        body: "Your new password is: #{new_password}"
+        )
+        users_table.where(user_id: user[:user_id]).update(:password => BCrypt::Password.create(new_password))
+        view "password_reset_success"
+    else
+        view "password_reset_fail" 
+    end
+end

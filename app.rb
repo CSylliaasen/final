@@ -86,6 +86,13 @@ post "/trails/create" do
 end
 
 get "/trails/leaderboard" do
+    counter = 0
+    for user in users_table do
+        puts number_of_logs = logs_table.where(user_id: user[:user_id]).count
+        leaderboard[counter] = {name: user[:first_name], user_since: user[:creation_date],number_of_logs: number_of_logs }
+        counter = counter + 1
+    end
+    pp leaderboard
     view "leaderboard"
 end
 

@@ -79,7 +79,8 @@ get "/trails/new" do
     view "new_trail"
 end
 
-get "/trails/create" do
+post "/trails/create" do
+    trails_table.insert(trail_name: params["trail_name"], location: params["location"], distance: params["trail_length"], difficulty: params["difficulty"], comments: params["comments"])
     view "create_trail"
 end
 

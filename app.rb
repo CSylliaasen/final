@@ -20,8 +20,8 @@ logs_table = DB.from(:logs)
 users_table = DB.from(:users)
 
 # put your API credentials here (found on your Twilio dashboard)
-account_sid = ENV["AC1d9e46732911bd891b9b60bacf50b53d"]
-auth_token = ENV["fb5edceac792d12b54365b8ab55ff89d"]
+account_sid = ENV[""]
+auth_token = ENV[""]
 
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]

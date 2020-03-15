@@ -134,7 +134,7 @@ post "/password_reset/create" do
         client.messages.create(
         from: "+18183815131", 
         to: user[:phone_number],
-        body: "Your new password is: #{new_password}"
+        body: "Your new password is: #{new_password} - Sent by TakeAHikeBot!"
         )
         users_table.where(user_id: user[:user_id]).update(:password => BCrypt::Password.create(new_password))
         view "password_reset_success"

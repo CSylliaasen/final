@@ -19,9 +19,8 @@ trails_table = DB.from(:trails)
 logs_table = DB.from(:logs)
 users_table = DB.from(:users)
 
-# put your API credentials here (found on your Twilio dashboard)
-account_sid = ENV[""]
-auth_token = ENV[""]
+account_sid = ENV["TWILIO_ACCOUNT_SID"]
+auth_token = ENV["TWILIO_AUTH_TOKEN"]
 
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]

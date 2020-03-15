@@ -53,7 +53,8 @@ post "/users/create" do
 end
 
 get "/users/user_detail" do
-    
+    @trails_table = trails_table
+    @logs_table = logs_table
     view "user_detail"
 end
 

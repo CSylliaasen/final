@@ -1,1 +1,16 @@
 <h1>New trail</h1>
+<form action="/users/logs/create" method="post">
+    <div class="form-group">
+        <label for="trail_name">Trail name</label>
+        <input type="text" class="form-control" name="trail_name" placeholder="Old Creek Trail">
+    </div>
+    <div class="form-group">
+        <label for="distance">Duration</label>
+        <input type="text" class="form-control" name="duration" placeholder="30 minutes">
+    </div>
+    <div class="form-group">
+        <label for="notes">Notes</label>
+        <textarea class="form-control" name="notes" rows="3" placeholder="“I ran into a Sasquatch – a Bigfoot. We were face to face. He was 30 feet up a the tree."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

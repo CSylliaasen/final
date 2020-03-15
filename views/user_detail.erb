@@ -11,8 +11,8 @@
                 Member since <%= @current_user[:creation_date][0,4] %>   
             </div>
             <div class="row">
-                Number of journal entries
-            </div>
+                Number of journal entries <%= @logs_table.where(user_id: @current_user[:user_id]).count %>
+            </div> 
         </div>    
         <div class="col-lg">
         </div>
@@ -21,24 +21,28 @@
         <a href = "/users/logs/new" type="button" class="btn btn-primary">New log entry</a>
     </div>
     <div class="row">
-        <table class="table">
+        <table class="table mt-5">
             <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Trail</th>
-                <th scope="col">Duration</th>
-                <th scope="col">Distance</th>
-                <th scope="col">Notes</th>
-            </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Trail</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Distance</th>
+                    <th scope="col">Notes</th>
+                </tr>
             </thead>
             <tbody>
-                <% for entry in @log_summary_table do %>
+                <% row = 1 %>
+                <% user_logs = @logs_table.where(user_id: @current_user[:user_id]) %>
+                <% for log in user_logs do %>
                 <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
+                    <th scope="row"><%= row %></th>
+                    <td><%= @trails_table.where(trail_id: log[:trail_id]).to_a[0][:trail_name] %></td>
+                    <td><%= log[:duration] %></td>
+                    <td><%= log[:distance] %></td>
+                    <td><%= log[:notes] %></td>
                 </tr>
+                <% row = row + 1 %>
                 <% end %>
             </tbody>
         </table>

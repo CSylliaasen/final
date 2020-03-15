@@ -1,9 +1,6 @@
 <h1><%=@trail[:trail_name]%></h1>
 <div class="container">
     <div class="row">
-        <div class="col-lg-2">
-            <img src ="https://www.pngitem.com/pimgs/m/272-2720656_user-profile-dummy-hd-png-download.png" width = "100px">
-        </div>
         <div class="col-sm">
             <div class="row">
                 Distance: <%= @trail[:distance] %>
@@ -15,9 +12,9 @@
                 Comments: <%= @trail[:comments] %>
             </div> 
         </div>    
-        <div class="col-lg">
-        </div>
+    </div>
+    <div class="row mt-2">
+    <iframe width="600" height="450" frameborder="0" style="border:0"src="https://www.google.com/maps/embed/v1/view?zoom=10&center=<%=@lat_long[0]%>,<%=@lat_long[1]%>&key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw" allowfullscreen></iframe>
     </div>
 </div>
-
 

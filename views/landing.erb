@@ -1,2 +1,9 @@
 <h1>Welcome to Take a Hike!</h1>
-<a class="btn btn-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/logins/new">Please Sign in to Continue!</a>
+
+<% if @current_user == nil %>
+        <a class="btn btn-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/logins/new">Please Sign in to Continue!</a>
+    <% else %>
+        <a class="btn btn-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/users/user_detail">Take me to my profile!</a>
+    <% end %>
+
+

@@ -5,6 +5,7 @@ require "sequel"                                                                
 require "logger"                                                                      #
 require "twilio-ruby"                                                                 #
 require "bcrypt"                                                                      #
+require "geocoder"                                                                    #
 connection_string = ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/development.sqlite3"  #
 DB ||= Sequel.connect(connection_string)                                              #
 DB.loggers << Logger.new($stdout) unless DB.loggers.size > 0                          #
@@ -17,6 +18,10 @@ after { puts; }                                                                 
 trails_table = DB.from(:trails)
 logs_table = DB.from(:logs)
 users_table = DB.from(:users)
+
+# put your API credentials here (found on your Twilio dashboard)
+account_sid = ENV["AC1d9e46732911bd891b9b60bacf50b53d"]
+auth_token = ENV["fb5edceac792d12b54365b8ab55ff89d"]
 
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]
@@ -78,6 +83,9 @@ end
 
 get "/trails/:trail_id/detail" do
     @trail = trails_table.where(trail_id: params["trail_id"]).to_a[0]
+    results = Geocoder.search(@trail[:location])
+    @lat_long = results.first.coordinates
+    pp @lat_long
     view "trail_detail"
 end
 

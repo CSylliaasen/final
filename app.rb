@@ -72,6 +72,7 @@ post "/users/logs/create" do
 end
 
 get "/trails" do
+    @trails_table = trails_table
     view "trails"
 end
 

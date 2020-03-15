@@ -3,7 +3,6 @@
     <div class="form-group">
         <label for="trail_name">Select a trail</label>
         <select class="form-control" name="trail_name">
-        <% pp @trails_table %>
         <% for trail in @trails_table.all do %>
             <option><%= trail[:trail_name] %></option>
         <% end %>

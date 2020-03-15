@@ -21,6 +21,7 @@ users_table = DB.from(:users)
 
 account_sid = ENV["TWILIO_ACCOUNT_SID"]
 auth_token = ENV["TWILIO_AUTH_TOKEN"]
+client = Twilio::REST::Client.new(account_sid, auth_token)
 
 before do
     @current_user = users_table.where(user_id: session["user_id"]).to_a[0]
@@ -39,6 +40,11 @@ post "/logins/create" do
     if user && BCrypt::Password::new(user[:password]) == params["password"]
         session["user_id"] = user[:user_id]
         @current_user = user
+        client.messages.create(
+        from: "+18183815131", 
+        to: @current_user[:phone_number],
+        body: "Just a heads up, someone just logged into your account! - Sent by TakeAHikeBot!"
+        )
         view "create_login"
     else
         view "create_login_failed"

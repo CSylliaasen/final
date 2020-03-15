@@ -18,7 +18,12 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #449636;">
-    <a class="navbar-brand" href="#">Take A Hike</a>
+    <% if @current_user == nil %>
+        <a class="navbar-brand" href="/logins/new">Take A Hike</a>
+    <% else %>
+        <a class="navbar-brand" href="/users/user_detail">Take A Hike</a>
+    <% end %>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

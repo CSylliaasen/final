@@ -76,6 +76,11 @@ get "/trails" do
     view "trails"
 end
 
+get "/trails/:trail_id/detail" do
+    @trail = trails_table.where(trail_id: params["trail_id"]).to_a[0]
+    view "trail_detail"
+end
+
 get "/trails/new" do
     view "new_trail"
 end
@@ -87,12 +92,13 @@ end
 
 get "/trails/leaderboard" do
     counter = 0
+    leaderboard = [0]
     for user in users_table do
         puts number_of_logs = logs_table.where(user_id: user[:user_id]).count
-        leaderboard[counter] = {name: user[:first_name], user_since: user[:creation_date],number_of_logs: number_of_logs }
+        leaderboard[counter] = {name: user[:first_name], user_since: user[:creation_date][0,4],number_of_logs: number_of_logs }
         counter = counter + 1
     end
-    pp leaderboard
+    @leaderboard = leaderboard.sort_by {|h| -h[:number_of_logs]}
     view "leaderboard"
 end
 

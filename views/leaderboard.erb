@@ -1,1 +1,23 @@
-<h1>Leaderboard!<h1>
+<h1>Leaderboard!</h1>
+ <table class="table mt-5">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User</th>
+                    <th scope="col">User Since</th>
+                    <th scope="col">Number of Logs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% row = 1 %>
+                <% for user in @leaderboard do %>
+                <tr>
+                    <th scope="row"><%= row %></th>
+                    <td><%= user[:name] %></td>
+                    <td><%= user[:user_since] %></td>
+                    <td><%= user[:number_of_logs] %></td>
+                </tr>
+                <% row = row + 1 %>
+                <% end %>
+            </tbody>
+        </table>

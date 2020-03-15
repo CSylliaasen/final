@@ -58,7 +58,7 @@ trails_table.insert( trail_name: "Isle Royale",
                     location: "Lake Superior",
                     distance: "20 miles",
                     difficulty: "Hard",
-                    comments: "Incredible trip but is difficult to get to. Must take a sea-place or a very long boat ride from Michigan or Minnesota.")
+                    comments: "Incredible trip but is difficult to get to. Must take a sea-plane or a very long boat ride from Michigan or Minnesota.")
 
 trails_table.insert( trail_name: "Mark Twain National Forest", 
                     location: "Kaolin Township, MO",

@@ -43,9 +43,11 @@
             <% end %>
             <li class="nav-item active">
             <% if @current_user == nil %>
-                <a class="btn btn-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/logins/new">Sign in</a>
+                # <a class="btn btn-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/logins/new">Sign in</a>
+                <a class="nav-link" href="/logins/new">Sign In <span class="sr-only">(current)</span></a>
             <% else %>
-                <a class="btn btn-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/sign_off">Sign out</a>
+                # <a class="btn btn-primary d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/sign_off">Sign out</a>
+                <a class="nav-link" href="/sign_off">Sign Out<span class="sr-only">(current)</span></a>
             <% end %>
             </li>
         </ul>
